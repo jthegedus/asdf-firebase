@@ -1,33 +1,55 @@
-# asdf-plugin-template
+<div align="center">
 
-This is an [asdf-vm plugin](https://asdf-vm.com/#/plugins-create) template with CI to run [Shellcheck](https://github.com/koalaman/shellcheck) and testing with the [asdf test GitHub Action](https://github.com/asdf-vm/actions).
+# asdf-firebase ![Build](https://github.com/jthegedus/asdf-firebase/workflows/Build/badge.svg) ![Lint](https://github.com/jthegedus/asdf-firebase/workflows/Lint/badge.svg)
 
-For more information about creating a plugin, see the [plugins create section of the docs](https://asdf-vm.com/#/plugins-create).
+[Firebase CLI (firebase-tools)](https://firebase.google.com/) plugin for [asdf version manager](https://asdf-vm.com).
 
-## Usage
+</div>
 
-1. [generate a template of this repo](https://github.com/asdf-vm/asdf-plugin-template/generate)
-2. edit the following files/folders:
+# Contents
 
-   - rename folder `GITHUB` to `.github`
-   - `.github/workflows/build.yaml`
-     - replace `<YOUR TOOLS COMMAND>`
-   - `LICENSE`
-     - replace `<YEAR>`
-     - replace `<YOUR NAME>`
-   - `contributing.md`
-     - replace `<YOUR TOOL>`
-     - replace `<YOUR GITHUB USERNAME>`
-     - expand on this contributing guide as you see fit
-   - `README_TEMPLATE.md`
-     - replace `<YOUR TOOL>`
-     - replace `<YOUR GITHUB USERNAME>`
-     - replace `<REPO>`
-     - replace the items in the `Dependencies` section
-     - rename file to README.md overwriting this file
+- [Dependencies](#dependencies)
+- [Install](#install)
+- [Why?](#why)
+- [Contributing](#contributing)
+- [License](#license)
 
-3. write your code in the `bin/install`, `bin/list-all` and `lib/utils.bash` files.
+# Dependencies
 
-## Contributing
+- `bash`, `curl`, `tar`
 
-Contributions welcome!
+# Install
+
+Plugin:
+
+```shell
+asdf plugin add firebase
+# or
+asdf plugin add https://github.com/jthegedus/asdf-firebase.git
+```
+
+firebase:
+
+```shell
+asdf install firebase 7.15.0
+```
+
+Set global version:
+
+```shell
+asdf global firebase 7.15.0
+```
+
+# Why?
+
+The asdf config file, `.tool-versions`, allows pinning each tool in your project to a specific version. This ensures that ALL developers are using the same version of each tool. Same `python`, same `ruby`, same `gcloud`, same `terraform` etc.
+
+# Contributing
+
+Contributions of any kind welcome! See the [contributing guide](contributing.md).
+
+[Thanks goes to these contributors](https://github.com/jthegedus/asdf-firebase/graphs/contributors)!
+
+# License
+
+[MIT License](LICENSE) © [James Hegedus](https://github.com/jthegedus/)
