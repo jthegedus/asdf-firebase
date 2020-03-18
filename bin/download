@@ -7,7 +7,8 @@ source "$(dirname "$0")/../lib/utils.bash"
 
 function download() {
     local filename="firebase"
-    local url="$GH_REPO/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os)"
+    local url
+    url="$GH_REPO/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os)"
 
     printf "⏬  downloading %s\\n" "${filename}"
     status_code=$(curl -X GET \
