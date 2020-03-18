@@ -16,7 +16,7 @@
 
 # Dependencies
 
-- `bash`, `git`, `sed`, `grep`, `cut`, `curl`, `tar`, `xargs`
+- `bash`, `git`, `sed`, `grep`, `cut`, `curl`, `uname`, `awk`, `xargs`
 
 # Install
 
