@@ -2,7 +2,7 @@
 
 # asdf-firebase ![Build](https://github.com/jthegedus/asdf-firebase/workflows/Build/badge.svg) ![Lint](https://github.com/jthegedus/asdf-firebase/workflows/Lint/badge.svg)
 
-[Firebase CLI (firebase-tools)](https://firebase.google.com/) plugin for [asdf version manager](https://asdf-vm.com).
+[Firebase CLI](https://firebase.google.com/) [(firebase-tools)](https://github.com/firebase/firebase-tools) plugin for [asdf version manager](https://asdf-vm.com). Manage your Firebase CLI without Node.js or npm! Great for `python`, `golang`, `c++` & `java` Firebase projects.
 
 </div>
 
@@ -16,33 +16,40 @@
 
 # Dependencies
 
-- `bash`, `curl`, `tar`
+- `bash`, `git`, `sed`, `grep`, `cut`, `curl`, `tar`, `xargs`
 
 # Install
 
 Plugin:
 
 ```shell
-asdf plugin add firebase
-# or
+# prefer the git url method
 asdf plugin add https://github.com/jthegedus/asdf-firebase.git
+# or
+asdf plugin add firebase
 ```
 
-firebase:
+Install [`firebase-tools`](https://github.com/firebase/firebase-tools):
 
 ```shell
-asdf install firebase 7.15.0
+asdf install firebase 7.15.1
 ```
 
 Set global version:
 
 ```shell
-asdf global firebase 7.15.0
+asdf global firebase 7.15.1
 ```
+
+See `.tool-versions` configuration in the [asdf](https://asdf-vm.com/#/core-configuration?id=tool-versions) documentation to manage all your project's tools in one place!
 
 # Why?
 
-The asdf config file, `.tool-versions`, allows pinning each tool in your project to a specific version. This ensures that ALL developers are using the same version of each tool. Same `python`, same `ruby`, same `gcloud`, same `terraform` etc.
+`firebase-tools` is a CLI tool for all Firebase projects, regardless of language. To date, the methods for installation have been downloading the CLI from the Firebase website or through `npm`, with `npm` being the primary method advertised.
+
+Installing Node.js just to install a CLI tool via `npm` is cumbersome.
+
+With `asdf` and the `asdf-firebase` plugin, users/teams of any **non**-Node.js Firebase project can install pin the version of the Firebase CLI without needing to manage Node.js or `npm`!
 
 # Contributing
 

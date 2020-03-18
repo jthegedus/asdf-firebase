@@ -6,8 +6,28 @@ set -euo pipefail
 source "$(dirname "$0")/../lib/utils.bash"
 
 function install_firebase() {
-    helper
-    printf "install your tool here\\n"
+    # if not asdf version with asdf_download_path then call download script here
+    if [ -z "${ASDF_DOWNLOAD_PATH:-}" ]; then
+        tmp_download_dir=$(mktemp -d -t 'asdf_firebase_XXXXXX')
+        trap 'rm -rf "${tmp_download_dir}"' EXIT
+        printf "run download script for older version of asdf\\n"
+        export ASDF_DOWNLOAD_PATH="${tmp_download_dir}"
+
+        # download
+        bash "$(dirname "$0")/download"
+    fi
+    # extract from ${ASDF_DOWNLOAD_PATH} to ${ASDF_INSTALL_PATH}
+    # test executable
+    printf "🚧  installing...\\n"
+    mkdir -p "${ASDF_INSTALL_PATH}/bin"
+    cp "${ASDF_DOWNLOAD_PATH}/firebase" "${ASDF_INSTALL_PATH}/bin"
+    chmod +rx "${ASDF_INSTALL_PATH}/bin/firebase"
+    test -x "${ASDF_INSTALL_PATH}/bin/firebase" || fail "Expected ${ASDF_INSTALL_PATH}/bin/firebase to be executable."
+    printf "✅  firebase-tools %s installed!\\n" "${ASDF_INSTALL_VERSION}"
 }
+
+if [ "${ASDF_INSTALL_TYPE}" != "version" ]; then
+    fail "Please provide the firebase-tools version number you wish to install."
+fi
 
 install_firebase
