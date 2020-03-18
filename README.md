@@ -1,6 +1,6 @@
 <div align="center">
 
-# asdf-firebase ![Build](https://github.com/jthegedus/asdf-firebase/workflows/Build/badge.svg) ![Lint](https://github.com/jthegedus/asdf-firebase/workflows/Lint/badge.svg)
+# asdf-firebase ![Build](https://github.com/jthegedus/asdf-firebase/workflows/Build/badge.svg) ![Lint](https://github.com/jthegedus/asdf-firebase/workflows/Lint/badge.svg) [![Mentioned in Awesome Firebase](https://awesome.re/mentioned-badge.svg)](https://github.com/jthegedus/awesome-firebase)
 
 [Firebase CLI](https://firebase.google.com/) [(firebase-tools)](https://github.com/firebase/firebase-tools) plugin for [asdf version manager](https://asdf-vm.com). Manage your Firebase CLI without Node.js or npm! Great for `python`, `golang`, `c++` & `java` Firebase projects.
 
