@@ -16,12 +16,13 @@ function install_firebase() {
         # download
         bash "$(dirname "$0")/download"
     fi
-    # extract from ${ASDF_DOWNLOAD_PATH} to ${ASDF_INSTALL_PATH}
-    # test executable
+
     printf "🚧  installing...\\n"
+    # move executable
     mkdir -p "${ASDF_INSTALL_PATH}/bin"
     cp "${ASDF_DOWNLOAD_PATH}/firebase" "${ASDF_INSTALL_PATH}/bin"
     chmod +rx "${ASDF_INSTALL_PATH}/bin/firebase"
+    # test executable
     test -x "${ASDF_INSTALL_PATH}/bin/firebase" || fail "Expected ${ASDF_INSTALL_PATH}/bin/firebase to be executable."
     printf "✅  firebase-tools %s installed!\\n" "${ASDF_INSTALL_VERSION}"
 }
