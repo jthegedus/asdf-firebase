@@ -47,9 +47,7 @@ See `.tool-versions` configuration in the [asdf](https://asdf-vm.com/#/core-conf
 
 `firebase-tools` is a CLI tool for all Firebase projects, regardless of language. To date, the methods for installation have been downloading the CLI from the Firebase website or through `npm`, with `npm` being the primary method advertised.
 
-Installing Node.js just to install a CLI tool via `npm` is cumbersome.
-
-With `asdf` and the `asdf-firebase` plugin, users/teams of any **non**-Node.js Firebase project can install pin the version of the Firebase CLI without needing to manage Node.js or `npm`!
+With `asdf` and the `asdf-firebase` plugin, users/teams of any Firebase project can install and pin the version of the Firebase CLI without needing to manage Node.js or `npm`!
 
 # Contributing
 
