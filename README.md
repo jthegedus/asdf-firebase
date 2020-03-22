@@ -16,7 +16,7 @@
 
 # Dependencies
 
-- `bash`, `git`, `sed`, `grep`, `cut`, `curl`, `uname`, `awk`, `xargs`
+Are tracked in [lib/dependencies.txt](lib/dependencies.txt) and checked on installation of plugin and `asdf install gcloud *`. The core dependencies are: `bash`, `curl`, `git`, `grep`, `uname`.
 
 # Install
 
