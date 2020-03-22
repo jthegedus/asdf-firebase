@@ -1,0 +1,17 @@
+awk
+bash
+curl
+cut
+dirname
+echo
+git
+grep
+mktemp
+printf
+rm
+sed
+source
+sort
+tar
+uname
+xargs

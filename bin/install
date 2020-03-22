@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+# shellcheck source=../lib/helpers.bash
+source "$(dirname "$0")/../lib/helpers.bash"
 # shellcheck source=../lib/utils.bash
 source "$(dirname "$0")/../lib/utils.bash"
 
@@ -10,25 +12,27 @@ function install_firebase() {
     if [ -z "${ASDF_DOWNLOAD_PATH:-}" ]; then
         tmp_download_dir=$(mktemp -d -t 'asdf_firebase_XXXXXX')
         trap 'rm -rf "${tmp_download_dir}"' EXIT
-        printf "run download script for older version of asdf\\n"
+        log_info "ℹ️  run download script for older version of asdf"
         export ASDF_DOWNLOAD_PATH="${tmp_download_dir}"
 
         # download
         bash "$(dirname "$0")/download"
     fi
 
-    printf "🚧  installing...\\n"
+    log_info "🚧  installing..."
     # move executable
     mkdir -p "${ASDF_INSTALL_PATH}/bin"
     cp "${ASDF_DOWNLOAD_PATH}/firebase" "${ASDF_INSTALL_PATH}/bin"
     chmod +rx "${ASDF_INSTALL_PATH}/bin/firebase"
     # test executable
-    test -x "${ASDF_INSTALL_PATH}/bin/firebase" || fail "Expected ${ASDF_INSTALL_PATH}/bin/firebase to be executable."
-    printf "✅  firebase-tools %s installed!\\n" "${ASDF_INSTALL_VERSION}"
+    test -x "${ASDF_INSTALL_PATH}/bin/firebase" || log_failure_and_exit "Expected ${ASDF_INSTALL_PATH}/bin/firebase to be executable."
+    log_success "firebase-tools ${ASDF_INSTALL_VERSION} installed!"
 }
 
 if [ "${ASDF_INSTALL_TYPE}" != "version" ]; then
-    fail "Please provide the firebase-tools version number you wish to install."
+    log_failure_and_exit "Please provide the firebase-tools version number you wish to install."
 fi
+
+check_dependencies "$(dirname "$0")/../lib/dependencies.txt" "failure"
 
 install_firebase
