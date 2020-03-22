@@ -32,7 +32,7 @@ function check_dependencies() {
 
     # loop over file of line separated list of dependencies required by this tool
     while IFS="" read -r p || [ -n "${p}" ]; do
-        if [ "$(command -v "${p}")" ]; then
+        if [ ! "$(command -v "${p}")" ]; then
             missing_dependencies+=("${p}")
         fi
     done <"${dependencies_file}"
