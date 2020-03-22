@@ -4,9 +4,11 @@ set -euo pipefail
 
 # shellcheck source=../lib/utils.bash
 source "$(dirname "$0")/../lib/utils.bash"
+# shellcheck source=../lib/helpers.bash
+source "$(dirname "$0")/../lib/helpers.bash"
 
 function list_all() {
-    git ls-remote --tags --refs "$GH_REPO" |
+    git ls-remote --tags --refs "$(get_github_repo)" |
         grep -o 'refs/tags/.*' |
         cut -d/ -f3- |
         sed 's/^v//'

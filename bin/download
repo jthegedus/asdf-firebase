@@ -4,13 +4,15 @@ set -euo pipefail
 
 # shellcheck source=../lib/utils.bash
 source "$(dirname "$0")/../lib/utils.bash"
+# shellcheck source=../lib/helpers.bash
+source "$(dirname "$0")/../lib/helpers.bash"
 
 function download() {
     local filename="firebase"
     local url
-    url="$GH_REPO/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os)"
+    url="$(get_github_repo)/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os_name)"
 
-    printf "⏬  downloading %s\\n" "${filename}"
+    log_info "⏬  downloading ${filename} ${ASDF_INSTALL_VERSION} from ${url}"
     status_code=$(curl -X GET \
         --write-out "%{http_code}" \
         --progress-bar \
@@ -18,10 +20,9 @@ function download() {
         "${url}")
 
     if [[ ${status_code} -eq 404 ]]; then
-        fail "firebase-tools not found for version ${ASDF_INSTALL_VERSION}. Full version required, not just major version numbers."
-        exit 1
+        log_failure_and_exit "firebase-tools not found for version ${ASDF_INSTALL_VERSION}. Full version required, not just major version numbers."
     fi
-    printf "✅  downloaded!\\n"
+    log_success "downloaded!"
 }
 
 download
