@@ -44,7 +44,7 @@ asdf global firebase 7.15.1
 or if [![https://github.com/asdf-vm/asdf/pull/633](https://img.shields.io/github/pulls/detail/state/asdf-vm/asdf/633)](https://github.com/asdf-vm/asdf/pull/633) is merged, set the **latest installed** version:
 
 ```shell
-asdf global gcloud latest
+asdf global firebase latest
 ```
 
 These commands also apply to `asdf local gcloud <version>`.
