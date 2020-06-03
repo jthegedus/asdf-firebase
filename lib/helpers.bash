@@ -3,5 +3,5 @@
 set -euo pipefail
 
 function get_github_repo() {
-    echo "https://github.com/firebase/firebase-tools"
+	echo "https://github.com/firebase/firebase-tools"
 }

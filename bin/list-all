@@ -8,10 +8,10 @@ source "$(dirname "$0")/../lib/utils.bash"
 source "$(dirname "$0")/../lib/helpers.bash"
 
 function list_all() {
-    git ls-remote --tags --refs "$(get_github_repo)" |
-        grep -o 'refs/tags/.*' |
-        cut -d/ -f3- |
-        sed 's/^v//'
+	git ls-remote --tags --refs "$(get_github_repo)" |
+		grep -o 'refs/tags/.*' |
+		cut -d/ -f3- |
+		sed 's/^v//'
 }
 
 list_all | sort_versions | xargs echo

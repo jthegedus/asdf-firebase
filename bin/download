@@ -8,21 +8,22 @@ source "$(dirname "$0")/../lib/utils.bash"
 source "$(dirname "$0")/../lib/helpers.bash"
 
 function download() {
-    local filename="firebase"
-    local url
-    url="$(get_github_repo)/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os_name)"
+	local filename="firebase"
+	local url
+	url="$(get_github_repo)/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os_name)"
 
-    log_info "⏬  downloading ${filename} ${ASDF_INSTALL_VERSION} from ${url}"
-    status_code=$(curl -X GET \
-        --write-out "%{http_code}" \
-        --progress-bar \
-        -Lo "${ASDF_DOWNLOAD_PATH}/${filename}" \
-        "${url}")
+	log_info "⏬  downloading ${filename} ${ASDF_INSTALL_VERSION} from ${url}"
+	status_code=$(curl -X GET \
+		--write-out "%{http_code}" \
+		--progress-bar \
+		-Lo "${ASDF_DOWNLOAD_PATH}/${filename}" \
+		"${url}")
 
-    if [[ ${status_code} -eq 404 ]]; then
-        log_failure_and_exit "firebase-tools not found for version ${ASDF_INSTALL_VERSION}. Full version required, not just major version numbers."
-    fi
-    log_success "downloaded!"
+	if [[ ${status_code} -eq 404 ]]; then
+		rm -rf "${ASDF_DOWNLOAD_PATH}"
+		log_failure_and_exit "An error occurred. firebase-tools may not have been found for version ${ASDF_INSTALL_VERSION}. Full versions are required, not just major version numbers."
+	fi
+	log_success "downloaded!"
 }
 
 download
