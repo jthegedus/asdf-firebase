@@ -1,0 +1,25 @@
+{
+	"name": "asdf-firebase",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jthegedus/asdf-firebase.git"
+	},
+	"license": "MIT",
+	"homepage": "https://github.com/jthegedus/asdf-firebase#readme",
+	"bugs": {
+		"url": "https://github.com/jthegedus/asdf-firebase/issues"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^12.0.0",
+		"@commitlint/config-conventional": "^12.0.0",
+		"husky": "^5.1.1",
+		"prettier": "^2.2.1"
+	},
+	"scripts": {
+		"prepare": "husky install"
+	},
+	"prettier": {
+		"useTabs": true
+	}
+}
