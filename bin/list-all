@@ -2,10 +2,13 @@
 
 set -euo pipefail
 
-# shellcheck source=../lib/utils.bash
-source "$(dirname "$0")/../lib/utils.bash"
+current_script_path="${BASH_SOURCE[0]}"
+plugin_dir="$(dirname "$(dirname "$current_script_path")")"
+
 # shellcheck source=../lib/helpers.bash
-source "$(dirname "$0")/../lib/helpers.bash"
+source "${plugin_dir}/lib/helpers.bash"
+# shellcheck source=../lib/utils.bash
+source "${plugin_dir}/lib/utils.bash"
 
 function list_all() {
 	git ls-remote --tags --refs "$(get_github_repo)" |
