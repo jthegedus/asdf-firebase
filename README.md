@@ -4,6 +4,8 @@
 
 [Firebase CLI](https://firebase.google.com/) [(firebase-tools)](https://github.com/firebase/firebase-tools) plugin for [asdf version manager](https://asdf-vm.com). Manage your Firebase CLI without Node.js or npm global installs! Great for pinning your firebase version across the team and for `python`, `golang`, `c++` & `java` Firebase projects.
 
+![asdf-firebase](./assets/asdf-firebase.png)
+
 </div>
 
 # Contents
