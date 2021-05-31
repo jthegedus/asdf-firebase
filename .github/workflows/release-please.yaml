@@ -10,3 +10,4 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v2
         with:
           release-type: simple
+          version-file: ./VERSION
