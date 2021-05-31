@@ -61,7 +61,7 @@ With `asdf` and the `asdf-firebase` plugin, users/teams of any Firebase project 
 
 # Contributing
 
-Contributions of any kind welcome! See the [contributing guide](contributing.md).
+Contributions of any kind welcome! See the [contributing guide](CONTRIBUTING.md).
 
 [Thanks goes to these contributors](https://github.com/jthegedus/asdf-firebase/graphs/contributors)!
 
