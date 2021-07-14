@@ -28,14 +28,14 @@ body:
   - type: textarea
     id: asdf-firebase-version
     attributes:
-      label: `asdf-firebase` version
+      label: asdf-firebase version
       description: What version of `asdf-firebase` are you running?
       placeholder: 1.0.0
       value: "1.0.0"
    - type: textarea
     id: firebase version
     attributes:
-      label: `firebase` version
+      label: firebase version
       description: What version of `firebase` are you running?
       placeholder: 9.16.0
       value: ""
