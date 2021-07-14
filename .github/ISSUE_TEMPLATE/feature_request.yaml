@@ -38,7 +38,7 @@ body:
       options:
         - nice to have
         - would make my life easier
-        - i cannot use SvelteKit without it
+        - i cannot use asfd-firebase without it
     validations:
       required: true
   - type: textarea
