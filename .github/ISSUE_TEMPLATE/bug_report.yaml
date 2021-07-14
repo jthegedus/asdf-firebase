@@ -1,4 +1,4 @@
-name: Bug report
+name: Bug Report
 description: Create a report to help us improve
 title: "bug: "
 labels: [bug]
@@ -21,6 +21,14 @@ body:
     label: Steps to reproduce
     description: Steps to reproduce the bug you experienced
     placeholder: 1. asdf firebase --version
+  validations:
+    required: true
+- type: input
+  id: asdf-version
+  attributes:
+    label: asdf version
+    description: What version of `asdf` are you running? Run `asdf --version`
+    placeholder: 0.8.1
   validations:
     required: true
 - type: input
