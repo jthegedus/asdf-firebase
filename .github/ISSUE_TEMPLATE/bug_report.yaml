@@ -13,7 +13,6 @@ body:
     label: Describe the bug
     description: Also tell us, what did you expect to happen?
     placeholder: Tell us what you see!
-    value: ""
   validations:
     required: true
 - type: textarea
@@ -22,7 +21,6 @@ body:
     label: Steps to reproduce
     description: Steps to reproduce the bug you experienced
     placeholder: 1. asdf firebase --version
-    value: ""
   validations:
     required: true
 - type: textarea
@@ -31,14 +29,12 @@ body:
     label: asdf-firebase version
     description: What version of `asdf-firebase` are you running?
     placeholder: 1.0.0
-    value: "1.0.0"
 - type: textarea
-  id: firebase version
+  id: firebase-version
   attributes:
     label: firebase version
     description: What version of `firebase` are you running?
     placeholder: 9.16.0
-    value: ""
 - type: checkboxes
   id: terms
   attributes:
