@@ -1,5 +1,15 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/jthegedus/asdf-firebase/compare/v1.0.0...v1.0.1) (2021-07-14)
+
+
+### Bug Fixes
+
+* issue template format ([1326c56](https://www.github.com/jthegedus/asdf-firebase/commit/1326c56eedb7b68e9562e047fa210e0aa7502136))
+* issue template format ([de3c614](https://www.github.com/jthegedus/asdf-firebase/commit/de3c614db276f801551b9123f88febe06a45d4b7))
+* issue template format ([9dff9c0](https://www.github.com/jthegedus/asdf-firebase/commit/9dff9c0d9f08443c48e088348628558b2a8cc75b))
+* issue template format ([1973686](https://www.github.com/jthegedus/asdf-firebase/commit/19736861843bbd60911c1b8a6fae81c9febef1de))
+
 ## 1.0.0 (2021-06-01)
 
 
