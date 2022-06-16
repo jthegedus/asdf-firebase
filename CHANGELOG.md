@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/jthegedus/asdf-firebase/compare/v1.0.0...v1.0.1) (2022-06-16)
+
+
+### Bug Fixes
+
+* sort_versions function ([#23](https://www.github.com/jthegedus/asdf-firebase/issues/23)) ([5176df6](https://www.github.com/jthegedus/asdf-firebase/commit/5176df6261c1ea515d117df78d462a445885473a))
+
 ## 1.0.0 (2021-06-01)
 
 
