@@ -1,0 +1,40 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  asdf_plugin_test:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: asdf plugin test
+        uses: asdf-vm/actions/plugin-test@v1
+        with:
+          command: firebase --help
+          github_token: ${{ github.token }}
+  bats:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install asdf dependencies
+        uses: asdf-vm/actions/install@v1
+      - name: Run tests
+        run: bats test
+        env:
+          GITHUB_API_TOKEN: ${{ github.token }}
