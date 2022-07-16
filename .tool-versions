@@ -1,4 +1,8 @@
-nodejs 16.15.1
+# Markdown Formatting
+deno 1.23.1
+# Shell Script Testing Framework
+bats 1.7.0
+# Shell Script Linter
 shellcheck 0.8.0
+# Shell Script Formatter
 shfmt 3.5.1
-pnpm 7.2.1
