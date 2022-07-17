@@ -58,5 +58,3 @@ if [[ ${status_code} -eq 404 ]]; then
 	fail "An error occurred. firebase-tools may not have been found for version ${ASDF_INSTALL_VERSION}. Full versions are required, not just major version numbers."
 fi
 printf "%s\\n" "* Downloaded to ${ASDF_DOWNLOAD_PATH}/${TOOL_NAME}"
-
-download
