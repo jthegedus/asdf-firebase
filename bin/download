@@ -13,8 +13,10 @@ function fail() {
 	exit 1
 }
 
-function get_os_name() {
+function download() {
+	local url
 	local os_name
+
 	case $(uname -s) in
 	Linux*)
 		os_name="linux"
@@ -26,11 +28,6 @@ function get_os_name() {
 		fail "Script only supports macOS and Ubuntu"
 		;;
 	esac
-	printf "%s\\n" "${os_name}"
-}
-
-function download() {
-	local url
 	url="${GH_REPO}/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os_name)"
 
 	printf "%s\\n" "* downloading ${TOOL_NAME} ${ASDF_INSTALL_VERSION} from ${url}"
