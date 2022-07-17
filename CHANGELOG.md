@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/jthegedus/asdf-firebase/compare/v1.0.1...v1.1.0) (2022-07-17)
+
+
+### Features
+
+* rewrite & simplify plugin ([#25](https://github.com/jthegedus/asdf-firebase/issues/25)) ([279a264](https://github.com/jthegedus/asdf-firebase/commit/279a2648866683616e9d92e86dcdc7342d074633))
+
 ### [1.0.1](https://www.github.com/jthegedus/asdf-firebase/compare/v1.0.0...v1.0.1) (2022-06-16)
 
 
