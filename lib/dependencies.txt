@@ -13,7 +13,6 @@ printf
 rm
 sed
 sort
-source
 tar
 uname
 xargs
