@@ -24,11 +24,6 @@ if [ "$ASDF_INSTALL_TYPE" == "version" ]; then
 	if ! grep -q "^$ASDF_INSTALL_VERSION$" <<<"$results"; then
 		fail "version \"$ASDF_INSTALL_VERSION\" not supported. \"asdf list all $TOOL_NAME\" will list available versions."
 	fi
-
-	# error if user attempts to install a version(non-ref) that the plugin might not support
-	if awk "BEGIN {exit !($ASDF_INSTALL_VERSION < $MIN_SUPPORTED_VERSION)}"; then
-		fail "only supports versions \"${MIN_SUPPORTED_VERSION}\" and later. Cannot install \"${ASDF_INSTALL_VERSION}\""
-	fi
 fi
 
 os_name="default"
