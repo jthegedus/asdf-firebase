@@ -13,7 +13,8 @@ function list_github_tags() {
 	git ls-remote --tags --refs "$GH_REPO" |
 		grep -o 'refs/tags/.*' |
 		cut -d/ -f3- |
-		sed 's|^v||'
+		sed 's|^v||' |
+		grep -Ev "$VERSIONS_TO_OMIT" # remove matched Git Tags from results
 }
 
 # input:  accepts newline-separated list of semver versions
