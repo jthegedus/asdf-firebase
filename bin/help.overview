@@ -8,4 +8,4 @@ plugin_dir=$(dirname "$(dirname "$current_script_path")")
 # shellcheck source=../lib/envs.bash
 . "${plugin_dir}/lib/envs.bash"
 
-printf "%s\\n\\n" "Manage $TOOL_NAME versions per project. The minimum supported $TOOL_NAME versions are $MIN_SUPPORTED_VERSION"
+printf "%s\\n\\n" "Manage $TOOL_NAME versions per project. The minimum supported $TOOL_NAME version is $MIN_SUPPORTED_VERSION"
