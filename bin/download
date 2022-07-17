@@ -5,26 +5,46 @@ set -euo pipefail
 current_script_path="${BASH_SOURCE[0]}"
 plugin_dir="$(dirname "$(dirname "$current_script_path")")"
 
-# shellcheck source=../lib/utils.bash
-source "${plugin_dir}/lib/utils.bash"
+# shellcheck source=../lib/envs.bash
+source "${plugin_dir}/lib/envs.bash"
+
+function fail() {
+	printf "* ERROR: asdf-%s %s\\n" "$TOOL_NAME" "$*"
+	exit 1
+}
+
+function get_os_name() {
+	local os_name
+	case $(uname -s) in
+	Linux*)
+		os_name="linux"
+		;;
+	Darwin*)
+		os_name="macos"
+		;;
+	*)
+		fail "Script only supports macOS and Ubuntu"
+		;;
+	esac
+	printf "%s\\n" "${os_name}"
+}
 
 function download() {
-	local filename="firebase"
 	local url
-	url="$(get_github_repo)/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os_name)"
+	url="${GH_REPO}/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os_name)"
 
-	log_info "⏬  downloading ${filename} ${ASDF_INSTALL_VERSION} from ${url}"
+	printf "%s\\n" "* downloading ${TOO_NAME} ${ASDF_INSTALL_VERSION} from ${url}"
 	status_code=$(curl -X GET \
 		--write-out "%{http_code}" \
 		--progress-bar \
-		-Lo "${ASDF_DOWNLOAD_PATH}/${filename}" \
+		-Lo "${ASDF_DOWNLOAD_PATH}/${TOO_NAME}" \
 		"${url}")
 
 	if [[ ${status_code} -eq 404 ]]; then
 		rm -rf "${ASDF_DOWNLOAD_PATH}"
-		log_failure_and_exit "An error occurred. firebase-tools may not have been found for version ${ASDF_INSTALL_VERSION}. Full versions are required, not just major version numbers."
+		fail "An error occurred. firebase-tools may not have been found for version ${ASDF_INSTALL_VERSION}. Full versions are required, not just major version numbers."
 	fi
-	log_success "downloaded!"
+	printf "%s\\n" "* Downloaded to ${ASDF_DOWNLOAD_PATH}/${TOO_NAME}"
 }
 
 download
