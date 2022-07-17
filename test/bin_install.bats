@@ -15,7 +15,6 @@ teardown() {
 	run asdf install ${TOOL_NAME} ref:asdfasd
 
 	[ "$?" -eq 0 ]
-	echo "$output"
 	[[ "$output" =~ "* ERROR: asdf-${TOOL_NAME} supports release installs only. See \"asdf list all ${TOOL_NAME}\" for a list of supported versions." ]]
 }
 
@@ -25,7 +24,6 @@ teardown() {
 	run asdf install ${TOOL_NAME} ${version_to_install}
 
 	[ "$?" -eq 0 ]
-	echo "$output"
 	[[ "$output" = "$expected" ]]
 }
 
@@ -35,7 +33,6 @@ teardown() {
 	run asdf install ${TOOL_NAME} ${version_to_install}
 
 	[ "$?" -eq 0 ]
-	echo "$output"
 	[[ "$output" = "$expected" ]]
 }
 
@@ -43,10 +40,23 @@ teardown() {
 	run asdf install ${TOOL_NAME} ${MIN_SUPPORTED_VERSION}
 
 	[ "$?" -eq 0 ]
-	echo "$output"
 	[[ "$output" =~ "Downloading ${TOOL_NAME}@${MIN_SUPPORTED_VERSION}" ]]
 	[[ "$output" =~ "Downloaded to" ]]
 	[[ "$output" =~ "Moved to" ]]
 	[[ "$output" =~ "Testing if ${TOOL_NAME}@${MIN_SUPPORTED_VERSION} is executable" ]]
 	[[ "$output" =~ "Success! ${TOOL_NAME}@${MIN_SUPPORTED_VERSION} is ready for use." ]]
+}
+
+@test "asdf install ${TOOL_NAME} latest: installs latest release" {
+	run asdf latest firebase
+	latest_version="$output"
+
+	run asdf install ${TOOL_NAME} latest
+
+	[ "$?" -eq 0 ]
+	[[ "$output" =~ "Downloading ${TOOL_NAME}@${latest_version}" ]]
+	[[ "$output" =~ "Downloaded to" ]]
+	[[ "$output" =~ "Moved to" ]]
+	[[ "$output" =~ "Testing if ${TOOL_NAME}@${latest_version} is executable" ]]
+	[[ "$output" =~ "Success! ${TOOL_NAME}@${latest_version} is ready for use." ]]
 }
