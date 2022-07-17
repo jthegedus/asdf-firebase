@@ -28,7 +28,7 @@ function download() {
 		fail "Script only supports macOS and Ubuntu"
 		;;
 	esac
-	url="${GH_REPO}/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os_name)"
+	url="${GH_REPO}/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-${os_name}"
 
 	printf "%s\\n" "* downloading ${TOOL_NAME} ${ASDF_INSTALL_VERSION} from ${url}"
 	status_code=$(curl -X GET \
