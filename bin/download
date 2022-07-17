@@ -33,18 +33,18 @@ function download() {
 	local url
 	url="${GH_REPO}/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os_name)"
 
-	printf "%s\\n" "* downloading ${TOO_NAME} ${ASDF_INSTALL_VERSION} from ${url}"
+	printf "%s\\n" "* downloading ${TOOL_NAME} ${ASDF_INSTALL_VERSION} from ${url}"
 	status_code=$(curl -X GET \
 		--write-out "%{http_code}" \
 		--progress-bar \
-		-Lo "${ASDF_DOWNLOAD_PATH}/${TOO_NAME}" \
+		-Lo "${ASDF_DOWNLOAD_PATH}/${TOOL_NAME}" \
 		"${url}")
 
 	if [[ ${status_code} -eq 404 ]]; then
 		rm -rf "${ASDF_DOWNLOAD_PATH}"
 		fail "An error occurred. firebase-tools may not have been found for version ${ASDF_INSTALL_VERSION}. Full versions are required, not just major version numbers."
 	fi
-	printf "%s\\n" "* Downloaded to ${ASDF_DOWNLOAD_PATH}/${TOO_NAME}"
+	printf "%s\\n" "* Downloaded to ${ASDF_DOWNLOAD_PATH}/${TOOL_NAME}"
 }
 
 download
