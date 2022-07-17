@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+current_script_path=${BASH_SOURCE[0]}
+plugin_dir=$(dirname "$(dirname "$current_script_path")")
+
+# shellcheck source=../lib/envs.bash
+. "${plugin_dir}/lib/envs.bash"
+
+printf "%s\\t%s\\n" "Git Repository:" "$GH_REPO"
+printf "%s\\t%s\\n" "Documentation:" "$DOCS_SITE"

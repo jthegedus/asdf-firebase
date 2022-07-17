@@ -2,10 +2,28 @@
 
 set -euo pipefail
 
-current_script_path="${BASH_SOURCE[0]}"
-plugin_dir="$(dirname "$(dirname "$current_script_path")")"
+current_script_path=${BASH_SOURCE[0]}
+plugin_dir=$(dirname "$(dirname "$current_script_path")")
 
-# shellcheck source=../lib/utils.bash
-source "${plugin_dir}/lib/utils.bash"
+# shellcheck source=../lib/envs.bash
+. "$plugin_dir/lib/envs.bash"
 
-check_dependencies "$(dirname "$0")/../lib/dependencies.txt" "warning"
+function check_dependencies() {
+	local dependencies_file="${1}"
+	declare -a missing_dependencies=()
+
+	# loop over file of line separated list of dependencies required by this tool
+	while IFS="" read -r p || [ -n "${p}" ]; do
+		if [ ! "$(command -v "${p}")" ]; then
+			missing_dependencies+=("${p}")
+		fi
+	done <"${dependencies_file}"
+
+	if [ "${#missing_dependencies[@]}" -ne 0 ]; then
+		printf "* Missing dependencies! These are hard requirements to install asdf-%s.\\n" "$TOOL_NAME"
+		printf "* %s\\n" "${missing_dependencies[@]}"
+		printf "* You should install the listed dependencies before continuing.\\n"
+	fi
+}
+
+check_dependencies "$plugin_dir/lib/dependencies.txt"

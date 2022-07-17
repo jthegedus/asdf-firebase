@@ -5,26 +5,50 @@ set -euo pipefail
 current_script_path="${BASH_SOURCE[0]}"
 plugin_dir="$(dirname "$(dirname "$current_script_path")")"
 
-# shellcheck source=../lib/utils.bash
-source "${plugin_dir}/lib/utils.bash"
+# shellcheck source=../lib/envs.bash
+. "${plugin_dir}/lib/envs.bash"
 
-function download() {
-	local filename="firebase"
-	local url
-	url="$(get_github_repo)/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-$(get_os_name)"
-
-	log_info "⏬  downloading ${filename} ${ASDF_INSTALL_VERSION} from ${url}"
-	status_code=$(curl -X GET \
-		--write-out "%{http_code}" \
-		--progress-bar \
-		-Lo "${ASDF_DOWNLOAD_PATH}/${filename}" \
-		"${url}")
-
-	if [[ ${status_code} -eq 404 ]]; then
-		rm -rf "${ASDF_DOWNLOAD_PATH}"
-		log_failure_and_exit "An error occurred. firebase-tools may not have been found for version ${ASDF_INSTALL_VERSION}. Full versions are required, not just major version numbers."
-	fi
-	log_success "downloaded!"
+function fail() {
+	printf "* ERROR: asdf-%s %s\\n" "$TOOL_NAME" "$*"
+	exit 1
 }
 
-download
+# ref installs not supported
+if [ "$ASDF_INSTALL_TYPE" != "version" ]; then
+	fail "supports release installs only. See \"asdf list all $TOOL_NAME\" for a list of supported versions."
+fi
+
+if [ "$ASDF_INSTALL_TYPE" == "version" ]; then
+	# validate version(non-ref) is in list-all versions
+	results="$(asdf list all $TOOL_NAME)"
+	if ! grep -q "^$ASDF_INSTALL_VERSION$" <<<"$results"; then
+		fail "version \"$ASDF_INSTALL_VERSION\" not supported. \"asdf list all $TOOL_NAME\" will list available versions."
+	fi
+fi
+
+os_name="default"
+case $(uname -s) in
+Linux*)
+	os_name="linux"
+	;;
+Darwin*)
+	os_name="macos"
+	;;
+*)
+	fail "Script only supports macOS and Ubuntu"
+	;;
+esac
+url="${GH_REPO}/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-${os_name}"
+
+printf "* Downloading %s@%s from %s\\n" "$TOOL_NAME" "$ASDF_INSTALL_VERSION" "$url"
+status_code=$(curl -X GET \
+	--write-out "%{http_code}" \
+	--progress-bar \
+	-Lo "${ASDF_DOWNLOAD_PATH}/${TOOL_NAME}" \
+	"${url}")
+
+if [[ ${status_code} -eq 404 ]]; then
+	rm -rf "${ASDF_DOWNLOAD_PATH}"
+	fail "An error occurred. firebase-tools may not have been found for version ${ASDF_INSTALL_VERSION}. Full versions are required, not just major version numbers."
+fi
+printf "%s\\n" "* Downloaded to ${ASDF_DOWNLOAD_PATH}/${TOOL_NAME}"

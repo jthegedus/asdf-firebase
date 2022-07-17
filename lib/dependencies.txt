@@ -3,14 +3,15 @@ bash
 curl
 cut
 dirname
-echo
 git
 grep
+ln
+make
+mkdir
 mktemp
 printf
 rm
 sed
-source
 sort
 tar
 uname

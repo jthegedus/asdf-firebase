@@ -11,20 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: asdf_install
-        uses: asdf-vm/actions/install@v1
-      - name: Shellcheck
-        run: shellcheck -x bin/* -P lib/
+        uses: actions/checkout@v3
 
-  shfmt:
+      - name: Install asdf dependencies
+        uses: asdf-vm/actions/install@v1
+      - name: Run ShellCheck
+        run: scripts/shellcheck.bash
+
+  shellfmt:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: asdf_install
+        uses: actions/checkout@v3
+
+      - name: Install asdf dependencies
         uses: asdf-vm/actions/install@v1
-      - name: Shell Format - List files to check
+
+      - name: List file to shfmt
         run: shfmt -f .
-      - name: Shell Format - Validate
-        run: shfmt -d .
+
+      - name: Run shfmt
+        run: scripts/shfmt.bash
+
