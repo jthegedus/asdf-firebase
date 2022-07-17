@@ -21,16 +21,18 @@ teardown() {
 
 @test "asdf install ${TOOL_NAME} 7.2.0: expect failure installing version below minimum supported" {
 	version_to_install="7.2.0"
+	expected="* ERROR: asdf-${TOOL_NAME} version \"${version_to_install}\" not supported. \"asdf list all ${TOOL_NAME}\" will list available versions."
 	run asdf install ${TOOL_NAME} ${version_to_install}
 
 	[ "$?" -eq 0 ]
 	echo "$output"
-	[[ "$output" =~ "* ERROR: asdf-${TOOL_NAME} only supports versions \"${MIN_SUPPORTED_VERSION}\" and later. Cannot install \"${ASDF_INSTALL_VERSION}\"" ]]
+	[[ "$output" = "$expected" ]]
 }
 
 @test "asdf install ${TOOL_NAME} 1000.0.0: errors as version is not in \"asdf list all ${TOOL_NAME}\"" {
-	expected="* ERROR: asdf-${TOOL_NAME} version \"1000.0.0\" not supported. \"asdf list all ${TOOL_NAME}\" will list available versions."
-	run asdf install ${TOOL_NAME} 1000.0.0
+	version_to_install="1000.0.0"
+	expected="* ERROR: asdf-${TOOL_NAME} version \"${version_to_install}\" not supported. \"asdf list all ${TOOL_NAME}\" will list available versions."
+	run asdf install ${TOOL_NAME} ${version_to_install}
 
 	[ "$?" -eq 0 ]
 	echo "$output"
