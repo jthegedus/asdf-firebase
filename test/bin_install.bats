@@ -25,7 +25,7 @@ teardown() {
 
 	[ "$?" -eq 0 ]
 	echo "$output"
-	[[ "$output" =~ "* ERROR: asdf-${TOOL_NAME} only supports versions \"${MIN_SUPPORTED_VERSION}\" and later." ]]
+	[[ "$output" =~ "* ERROR: asdf-${TOOL_NAME} only supports versions \"${MIN_SUPPORTED_VERSION}\" and later. Cannot install \"${ASDF_INSTALL_VERSION}\"" ]]
 }
 
 @test "asdf install ${TOOL_NAME} 1000.0.0: errors as version is not in \"asdf list all ${TOOL_NAME}\"" {
