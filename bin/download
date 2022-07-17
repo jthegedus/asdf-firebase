@@ -27,7 +27,7 @@ if [ "$ASDF_INSTALL_TYPE" == "version" ]; then
 
 	# Warn if user attempts to install a version(non-ref) that the plugin might not support
 	if awk "BEGIN {exit !($ASDF_INSTALL_VERSION < $MIN_SUPPORTED_VERSION)}"; then
-		fail "only supports versions \"%s\" and later.\\n" "$MIN_SUPPORTED_VERSION"
+		fail "only supports versions \"${MIN_SUPPORTED_VERSION}\" and later.\\n"
 	fi
 fi
 
