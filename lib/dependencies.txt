@@ -3,7 +3,6 @@ bash
 curl
 cut
 dirname
-echo
 git
 grep
 ln
