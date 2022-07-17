@@ -46,7 +46,7 @@ Darwin*)
 esac
 url="${GH_REPO}/releases/download/v${ASDF_INSTALL_VERSION}/firebase-tools-${os_name}"
 
-printf "%s\\n" "* Downloading ${TOOL_NAME} ${ASDF_INSTALL_VERSION} from ${url}"
+printf "* Downloading %s@%s from %s\\n" "$TOOL_NAME" "$ASDF_INSTALL_VERSION" "$url"
 status_code=$(curl -X GET \
 	--write-out "%{http_code}" \
 	--progress-bar \
