@@ -16,7 +16,7 @@ teardown() {
 
 	[ "$?" -eq 0 ]
 	# check min supported versions are present
-	[[ "$output" =~ "7.3.0" ]]
+	[[ "$output" =~ "${MIN_SUPPORTED_VERSION}" ]]
 	# ensure no versions prefixed with "v" as it should be stripped from GitHub URLs
-	[[ ! "$output" =~ "v7.*" ]]
+	[[ ! "$output" =~ "v${MIN_SUPPORTED_VERSION}" ]]
 }
