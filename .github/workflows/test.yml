@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: asdf plugin test
-        uses: asdf-vm/actions/plugin-test@v2
+        uses: asdf-vm/actions/plugin-test@v3
         with:
           command: firebase --help
           github_token: ${{ github.token }}
@@ -33,7 +33,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install asdf dependencies
-        uses: asdf-vm/actions/install@v2
+        uses: asdf-vm/actions/install@v3
       - name: Run tests
         run: bats test
         env:
