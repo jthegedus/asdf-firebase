@@ -26,7 +26,7 @@ Plugin:
 
 ```shell
 # prefer the git url method
-asdf plugin add https://github.com/jthegedus/asdf-firebase.git
+asdf plugin add firebase https://github.com/jthegedus/asdf-firebase.git
 # or
 asdf plugin add firebase
 ```
